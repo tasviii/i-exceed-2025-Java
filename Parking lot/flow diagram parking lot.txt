@@ -1,0 +1,73 @@
+                   ┌─────────────────────
+                   │     Vehicle (abstract)     │
+                   │----------------------------│
+                   │ - licensePlate: String     │
+                   │ - entryTime: long          │
+                   │ - exitTime: long           │
+                   │----------------------------│
+                   │ + getLicensePlate()        │
+                   │ + getEntryTime()           │
+                   │ + getExitTime()            │
+                   │ + setExitTime(long)        │
+                   │ + calculateFee(): int      │
+                   │ + getRate(): int (abstract)│
+                   │ + getType(): String        │
+                   └──────────▲──────────
+                                  │
+              ┌──────────────|─────────
+              │                               │
+      ┌────────────────       ┌─────────────────
+      │        Bike         │       │        Car          │
+      │---------------------│       │---------------------│
+      │ + getRate(): 20     │       │ + getRate(): 40     │
+      │ + getType(): "Bike" │       │ + getType(): "Car"  │
+      └────────────────       └─────────────────
+
+                   ┌───────────────────────
+                   │        ParkingSpot           │
+                   │------------------------------│
+                   │ - vehicle: Vehicle           │
+                   │------------------------------│
+                   │ + isEmpty(): boolean         │
+                   │ + park(Vehicle)              │
+                   │ + unpark()                   │
+                   │ + getVehicle(): Vehicle      │
+                   └───────────────┬───────
+                                        │
+                   ┌───────────────▼────────
+                   │             Floor              │
+                   │--------------------------------│
+                   │ - spots[]: ParkingSpot         │
+                   │ - type: String                 │
+                   │--------------------------------│
+                   │ + parkVehicle(Vehicle): boolean│
+                   │ + unparkVehicle(String, long): │
+                   │   boolean                      │
+                   │ + searchVehicle(String):       │
+                   │   boolean                      │
+                   │ + displayStatus()              │
+                   └───────────────┬─────────                                   
+                   ┌───────────────▼────────
+                   │          ParkingLot            │ 
+                   │--------------------------------│
+                   │ - bikeFloor: Floor             │
+                   │ - carFloor: Floor              │
+                   │--------------------------------│
+                   │ + parkVehicle(Vehicle)         │
+                   │ + unparkVehicle(String, long)  │
+                   │ + searchVehicle(String)        │
+                   │ + displayStatus()              │
+                   └───────────────┬────────
+                                        │
+                   ┌───────────────▼────────
+                   │             Main               │
+                   │--------------------------------│
+                   │ + formatTime(long): String     │
+                   │ + main(String[])               │
+                   │ ├─ Creates ParkingLot          | 
+                   │ ├─ Reads user input            │
+                   │ ├─ Calls parkVehicle()         │
+                   │ ├─ Calls unparkVehicle()       │
+                   │ ├─ Calls searchVehicle()       │
+                   │ └─ Calls displayStatus()       │
+                   └─────────────────────────
